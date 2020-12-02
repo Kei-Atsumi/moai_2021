@@ -4,4 +4,4 @@
 .Ruserdata
 /pics
 *.csv
-/docs/site_libs/bootstrap-3.3.5
+/docs/site_libs/bootstrap-3.3.5/css 
