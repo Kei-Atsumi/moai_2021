@@ -1,0 +1,20 @@
+name: "Moai2021"
+navbar: 
+  title: "Moai2021"
+  left:
+    - text: "Introduction"
+      href: https://ugui-guigui.wixsite.com/ugui-guigui
+    - text: "Menters"
+      href: index.html
+  right:
+    - text: "jsのテスト"
+      href: js_test.html
+output:
+  html_document:
+    theme: united
+    highlight: textmate
+    toc: false
+    toc_float:
+      collapse: false
+    df_print: "kable"
+output_dir: "docs"

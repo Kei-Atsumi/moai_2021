@@ -1,0 +1,72 @@
+---
+title: "Menters"
+---
+
+```{r, echo = FALSE}
+
+rm(list=ls())  # reset workspace
+options(scipen=100)  # do not show numbers using exponential
+
+# install & load packages
+pacman::p_load(
+  tidyverse
+  , magrittr   # extended pipe
+  # , flextable  # nice tables
+  , knitr  
+  , kableExtra # nice tables
+  , pander     # nice tables
+  , imager
+  # , xml2        # Read HTML
+  , rvest
+)
+
+# Rmarkdown settings
+knitr::opts_chunk$set(
+  prompt  = FALSE,  # Do not add > or + in inline-code
+  message = FALSE, 
+  comment = "", 
+  warning = FALSE,  # Mute warnings
+  tidy    = TRUE,
+  echo = FALSE
+  ) 
+options(knitr.kable.NA = '') # Hide NAs in kable table
+
+```
+
+```{r, results='asis', echo = FALSE}
+
+dat <- read_csv('./Menter.csv') %>%
+  filter(引き受け == "可") %>% 
+  select(
+    お名前, キーワード, メッセージ, HP
+  ) %>% 
+  rename("name" = "お名前", "Keys" = "キーワード", "Message" = "メッセージ")
+
+for(i in dat$name) {
+  
+  # Show data
+  dat %>%
+    filter(name == i) %>%
+    as.data.frame() %>%
+    column_to_rownames("name") %>%
+    t %>%                      
+    as.data.frame() %>%
+    drop_na() %>%
+    # flextable() %>% 
+    # autofit() %>% 
+    kable("html") %>%
+    kable_styling("striped", position = "left") %>%
+    column_spec(1, width = "7em") %>% 
+    print()
+  
+  # # Show picture
+  # load.image(paste0("./Photos/", dat.2[i,"Photo.file"])) %>%
+  #   # load.image(dat.2[i,"Photo.URL"]) %>%
+  #   # imresize(.7) %>% # Compress pix
+  #   plot(axes = FALSE, xlab = "", ylab = "")
+  
+}
+
+```
+
+
