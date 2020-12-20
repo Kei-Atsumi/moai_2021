@@ -2,6 +2,7 @@
 title: "Menters"
 ---
 
+
 ```{r, echo = FALSE}
 
 rm(list=ls())  # reset workspace
@@ -36,36 +37,43 @@ options(knitr.kable.NA = '') # Hide NAs in kable table
 ```{r, results='asis', echo = FALSE}
 
 dat <- read_csv('./Menter.csv') %>%
-  filter(引き受け == "可") %>% 
-  select(
-    お名前, キーワード, メッセージ, HP
+  filter(.$'相談相手役をお引き受けいただけますか？' == "可") %>% 
+  rename(
+    "Schedule" = "以下の大会開催期間のうち、モアイ実施が可能な日程を選択ください。なお時間帯はお昼あるいは夕方以降など公式プログラムの自由時間にあたる期間を設定ください。",
+    "Name" = "お名前",
+    "Keys" = "研究分野と研究手法や対象に関するキーワードをご記入ください。",
+    "HP" = "ご自身のHPがあればURLをご記入ください。",
+    "Message" = "メンティーへのメッセージがあれば自由にご記入ください。"
   ) %>% 
-  rename("name" = "お名前", "Keys" = "キーワード", "Message" = "メッセージ")
+  select(Name, Keys, Message, HP, Photo_name)
 
-for(i in dat$name) {
+for(i in dat$Photo_name) {
   
   # Show data
   dat %>%
-    filter(name == i) %>%
+    filter(Photo_name == i) %>%
     as.data.frame() %>%
-    column_to_rownames("name") %>%
+    mutate(Name_2 = str_c(.$Name, " さん")) %>% 
+    column_to_rownames("Name_2") %>%
+    select(-Photo_name, -Name) %>%    
     t %>%                      
     as.data.frame() %>%
     drop_na() %>%
     # flextable() %>% 
     # autofit() %>% 
     kable("html") %>%
-    kable_styling("striped", position = "left") %>%
+    kable_styling("striped", position = "left", font_size = 16) %>%
     column_spec(1, width = "7em") %>% 
     print()
   
-  # # Show picture
-  # load.image(paste0("./Photos/", dat.2[i,"Photo.file"])) %>%
-  #   # load.image(dat.2[i,"Photo.URL"]) %>%
-  #   # imresize(.7) %>% # Compress pix
-  #   plot(axes = FALSE, xlab = "", ylab = "")
+  # Show picture
+  load.image(paste0("./pics/", i)) %>%
+    # load.image(dat.2[i,"Photo.URL"]) %>%
+    # imresize(.7) %>% # Compress pix
+    plot(axes = FALSE, xlab = "", ylab = "")
   
 }
+
 
 ```
 

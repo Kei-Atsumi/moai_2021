@@ -3,11 +3,11 @@ navbar:
   title: "Moai2021"
   left:
     - text: "Introduction"
-      href: https://ugui-guigui.wixsite.com/ugui-guigui
+      href: https://ugui-guigui.wixsite.com/moai-esj2021
     - text: "Menters"
       href: index.html
   right:
-    - text: "jsのテスト"
+    - text: "お申込み (未設定)"
       href: js_test.html
 output:
   html_document:
