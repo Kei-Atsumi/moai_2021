@@ -11,7 +11,7 @@ navbar:
       href: js_test.html
 output:
   html_document:
-    theme: united
+    theme: flatly
     highlight: textmate
     toc: false
     toc_float:

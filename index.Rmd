@@ -34,6 +34,8 @@ options(knitr.kable.NA = '') # Hide NAs in kable table
 
 ```
 
+アルファベット順 <br>
+
 ```{r, results='asis', echo = FALSE}
 
 dat <- read_csv('./Menter.csv') %>%
@@ -45,7 +47,8 @@ dat <- read_csv('./Menter.csv') %>%
     "HP" = "ご自身のHPがあればURLをご記入ください。",
     "Message" = "メンティーへのメッセージがあれば自由にご記入ください。"
   ) %>% 
-  select(Name, Keys, Message, HP, Photo_name)
+  select(Name, Keys, Message, HP, Photo_name) %>% 
+  arrange(Photo_name)
 
 for(i in dat$Photo_name) {
   
