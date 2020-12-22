@@ -1,10 +1,9 @@
 name: "Moai2021"
 navbar: 
-  title: "Moai2021"
   left:
-    - text: "Introduction"
+    - text: "Moai2021"
       href: https://ugui-guigui.wixsite.com/moai-esj2021
-    - text: "Menters"
+    - text: "Menters-top"
       href: index.html
   right:
     - text: "お申込み (未設定)"

@@ -35,6 +35,8 @@ options(knitr.kable.NA = '') # Hide NAs in kable table
 ```
 
 アルファベット順 <br>
+<div style="margin-bottom:70px;">
+</div>
 
 ```{r, results='asis', echo = FALSE}
 
