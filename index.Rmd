@@ -47,9 +47,10 @@ dat <- read_csv('./Menter.csv') %>%
     "Name" = "お名前",
     "Keys" = "研究分野と研究手法や対象に関するキーワードをご記入ください。",
     "HP" = "ご自身のHPがあればURLをご記入ください。",
-    "Message" = "メンティーへのメッセージがあれば自由にご記入ください。"
+    "Message" = "メンティーへのメッセージがあれば自由にご記入ください。",
+    "申込フォーム" = "Entry_URL"
   ) %>% 
-  select(Name, Keys, Message, HP, Photo_name) %>% 
+  select(Name, Keys, Message, HP, Photo_name, 申込フォーム) %>% 
   arrange(Photo_name)
 
 for(i in dat$Photo_name) {

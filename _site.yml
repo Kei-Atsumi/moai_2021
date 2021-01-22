@@ -6,8 +6,8 @@ navbar:
     - text: "Menters-top"
       href: index.html
   right:
-    - text: "お申込み (未設定)"
-      href: js_test.html
+    - text: "メンターごとの開催日時候補"
+      href: https://chouseisan.com/s?h=c5e081f8471f45fcb995ce8442d2a147
 output:
   html_document:
     theme: flatly
