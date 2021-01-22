@@ -34,7 +34,7 @@ options(knitr.kable.NA = '') # Hide NAs in kable table
 
 ```
 
-アルファベット順 <br>
+アルファベット順です。申込フォームからお申し込みください。 <br>
 <div style="margin-bottom:70px;">
 </div>
 
