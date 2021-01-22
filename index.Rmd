@@ -35,6 +35,9 @@ options(knitr.kable.NA = '') # Hide NAs in kable table
 ```
 
 アルファベット順です。申込フォームからお申し込みください。 <br>
+
+なお、Firefox・Safari等のブラウザでは、申込フォームを新しいタブで開いてください。前のページに戻れなくなる不具合を確認しております。 <br>
+
 <div style="margin-bottom:70px;">
 </div>
 
