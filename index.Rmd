@@ -69,7 +69,7 @@ for(i in dat$Photo_name) {
     # autofit() %>% 
     kable("html") %>%
     kable_styling("striped", position = "left", font_size = 16) %>%
-    column_spec(1, width = "7em") %>% 
+    column_spec(1, width = "9em") %>% 
     print()
   
   # Show picture
