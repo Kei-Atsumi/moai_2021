@@ -16,6 +16,9 @@ https://github.com/kazutan/RmdSite_tuto
 ## index.Rmd
 トップページ
 
+## schedule.Rmd
+メンターごとのスケジュール
+
 ## _site.yml
 複数ページの書式をまとめて設定するyaml情報
 
