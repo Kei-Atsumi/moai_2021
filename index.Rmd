@@ -6,19 +6,14 @@ title: "Menters"
 ```{r, echo = FALSE}
 
 rm(list=ls())  # reset workspace
-options(scipen=100)  # do not show numbers using exponential
 
 # install & load packages
 pacman::p_load(
   tidyverse
-  , magrittr   # extended pipe
-  # , flextable  # nice tables
   , knitr  
   , kableExtra # nice tables
   , pander     # nice tables
   , imager
-  # , xml2        # Read HTML
-  , rvest
 )
 
 # Rmarkdown settings
@@ -56,6 +51,7 @@ dat <- read_csv('./Menter.csv') %>%
   select(Name, Keys, Message, HP, Photo_name, 申込フォーム) %>% 
   arrange(Photo_name)
 
+# Loop for each menter (listed on "photo_name")
 for(i in dat$Photo_name) {
   
   # Show data
@@ -68,8 +64,6 @@ for(i in dat$Photo_name) {
     t %>%                      
     as.data.frame() %>%
     drop_na() %>%
-    # flextable() %>% 
-    # autofit() %>% 
     kable("html") %>%
     kable_styling("striped", position = "left", font_size = 16) %>%
     column_spec(1, width = "9em") %>% 

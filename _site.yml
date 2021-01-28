@@ -7,7 +7,7 @@ navbar:
       href: index.html
   right:
     - text: "メンターごとの開催日時候補"
-      href: https://ugui-guigui.wixsite.com/moai-esj2021/%E3%83%A1%E3%83%B3%E3%82%BF%E3%83%BC%E3%81%94%E3%81%A8%E3%81%AE
+      href: schedule.html
 output:
   html_document:
     theme: flatly
@@ -16,4 +16,6 @@ output:
     toc_float:
       collapse: false
     df_print: "kable"
+    code_download: true
+    code_folding: hide
 output_dir: "docs"

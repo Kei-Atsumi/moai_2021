@@ -1,0 +1,30 @@
+.table-fixed-header tbody{
+  display:block;
+  overflow:auto;
+  height:400px;
+  width:100%;
+}
+.table-fixed-header thead tr{
+  display:table-header-group;
+  height:100%;
+}
+
+
+.horizontal-scroll-except-first-column {
+  width: 100%;
+  overflow: auto;
+}
+.horizontal-scroll-except-first-column > table > * > tr > th:first-child,
+.horizontal-scroll-except-first-column > table > * > tr > td:first-child {
+  position: absolute;
+  width: 8em;
+  margin-left: -8em;
+  background: #ccc;
+}
+
+.horizontal-scroll-except-first-column > table > * > tr > th,
+.horizontal-scroll-except-first-column > table > * > tr > td {
+  /* Without this, if a cell wraps onto two lines, the first column
+   * will look bad, and may need padding. */
+  white-space: nowrap;
+}
