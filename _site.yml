@@ -3,7 +3,7 @@ navbar:
   left:
     - text: "Moai2021"
       href: https://ugui-guigui.wixsite.com/moai-esj2021
-    - text: "Menters-top"
+    - text: "メンター紹介"
       href: index.html
   right:
     - text: "メンターごとの開催日時候補"
