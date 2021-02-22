@@ -13,13 +13,22 @@
 
 <title>メンター紹介</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
@@ -36,11 +45,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -54,30 +58,6 @@ if (window.hljs) {
 
 
 <style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
 #rmd-source-code {
   display: none;
 }
@@ -92,10 +72,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -112,40 +88,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -173,7 +122,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -185,7 +134,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -196,10 +145,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -211,7 +173,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -306,11 +267,11 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
-<div class="btn-group pull-right">
-<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu" style="min-width: 50px;">
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
 <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
 <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
 <li role="separator" class="divider"></li>
@@ -325,7 +286,7 @@ $(document).ready(function () {
 </div>
 
 
-<p>アルファベット順です。申込フォームからお申し込みください。 <br></p>
+<p>アルファベット順です。申込フォームからお申し込みください。応募は、定員に達し次第締めきっております。<a href="https://ugui-guigui.wixsite.com/moai-esj2021/%E6%96%B0%E7%9D%80%E6%83%85%E5%A0%B1">新着情報</a> で詳細をご確認ください。 <br></p>
 <p>なお、Firefox・Safari等のブラウザでは、申込フォームを新しいタブで開いてください。前のページに戻れなくなる不具合を確認しております。 <br></p>
 <div style="margin-bottom:70px;">
 
@@ -1441,7 +1402,7 @@ HP
 </table>
 <p><img src="index_files/figure-html/unnamed-chunk-2-25.png" width="672" /></p>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIuODoeODs+OCv+ODvOe0ueS7iyINCi0tLQ0KDQoNCmBgYHtyLCBlY2hvID0gRkFMU0V9DQoNCnJtKGxpc3Q9bHMoKSkgICMgcmVzZXQgd29ya3NwYWNlDQoNCiMgaW5zdGFsbCAmIGxvYWQgcGFja2FnZXMNCnBhY21hbjo6cF9sb2FkKA0KICB0aWR5dmVyc2UNCiAgLCBrbml0ciAgDQogICwga2FibGVFeHRyYSAjIG5pY2UgdGFibGVzDQogICwgcGFuZGVyICAgICAjIG5pY2UgdGFibGVzDQogICwgaW1hZ2VyDQopDQoNCiMgUm1hcmtkb3duIHNldHRpbmdzDQprbml0cjo6b3B0c19jaHVuayRzZXQoDQogIHByb21wdCAgPSBGQUxTRSwgICMgRG8gbm90IGFkZCA+IG9yICsgaW4gaW5saW5lLWNvZGUNCiAgbWVzc2FnZSA9IEZBTFNFLCANCiAgY29tbWVudCA9ICIiLCANCiAgd2FybmluZyA9IEZBTFNFLCAgIyBNdXRlIHdhcm5pbmdzDQogIHRpZHkgICAgPSBUUlVFLA0KICBlY2hvID0gRkFMU0UNCiAgKSANCm9wdGlvbnMoa25pdHIua2FibGUuTkEgPSAnJykgIyBIaWRlIE5BcyBpbiBrYWJsZSB0YWJsZQ0KDQpgYGANCg0K44Ki44Or44OV44Kh44OZ44OD44OI6aCG44Gn44GZ44CC55Sz6L6844OV44Kp44O844Og44GL44KJ44GK55Sz44GX6L6844G/44GP44Gg44GV44GE44CCIDxicj4NCg0K44Gq44GK44CBRmlyZWZveOODu1NhZmFyaeetieOBruODluODqeOCpuOCtuOBp+OBr+OAgeeUs+i+vOODleOCqeODvOODoOOCkuaWsOOBl+OBhOOCv+ODluOBp+mWi+OBhOOBpuOBj+OBoOOBleOBhOOAguWJjeOBruODmuODvOOCuOOBq+aIu+OCjOOBquOBj+OBquOCi+S4jeWFt+WQiOOCkueiuuiqjeOBl+OBpuOBiuOCiuOBvuOBmeOAgiA8YnI+DQoNCjxkaXYgc3R5bGU9Im1hcmdpbi1ib3R0b206NzBweDsiPg0KPC9kaXY+DQoNCmBgYHtyLCByZXN1bHRzPSdhc2lzJywgZWNobyA9IEZBTFNFfQ0KDQpkYXQgPC0gcmVhZF9jc3YoJy4vTWVudGVyLmNzdicpICU+JQ0KICBmaWx0ZXIoLiQn55u46KuH55u45omL5b2544KS44GK5byV44GN5Y+X44GR44GE44Gf44Gg44GR44G+44GZ44GL77yfJyA9PSAi5Y+vIikgJT4lIA0KICByZW5hbWUoDQogICAgIlNjaGVkdWxlIiA9ICLku6XkuIvjga7lpKfkvJrplovlgqzmnJ/plpPjga7jgYbjgaHjgIHjg6LjgqLjgqTlrp/mlr3jgYzlj6/og73jgarml6XnqIvjgpLpgbjmip7jgY/jgaDjgZXjgYTjgILjgarjgYrmmYLplpPluK/jga/jgYrmmLzjgYLjgovjgYTjga/lpJXmlrnku6XpmY3jgarjganlhazlvI/jg5fjg63jgrDjg6njg6Djga7oh6rnlLHmmYLplpPjgavjgYLjgZ/jgovmnJ/plpPjgpLoqK3lrprjgY/jgaDjgZXjgYTjgIIiLA0KICAgICJOYW1lIiA9ICLjgYrlkI3liY0iLA0KICAgICJLZXlzIiA9ICLnoJTnqbbliIbph47jgajnoJTnqbbmiYvms5XjgoTlr77osaHjgavplqLjgZnjgovjgq3jg7zjg6/jg7zjg4njgpLjgZToqJjlhaXjgY/jgaDjgZXjgYTjgIIiLA0KICAgICJIUCIgPSAi44GU6Ieq6Lqr44GuSFDjgYzjgYLjgozjgbBVUkzjgpLjgZToqJjlhaXjgY/jgaDjgZXjgYTjgIIiLA0KICAgICJNZXNzYWdlIiA9ICLjg6Hjg7Pjg4bjgqPjg7zjgbjjga7jg6Hjg4Pjgrvjg7zjgrjjgYzjgYLjgozjgbDoh6rnlLHjgavjgZToqJjlhaXjgY/jgaDjgZXjgYTjgIIiLA0KICAgICLnlLPovrzjg5Xjgqnjg7zjg6AiID0gIkVudHJ5X1VSTCINCiAgKSAlPiUgDQogIHNlbGVjdChOYW1lLCBLZXlzLCBNZXNzYWdlLCBIUCwgUGhvdG9fbmFtZSwg55Sz6L6844OV44Kp44O844OgKSAlPiUgDQogIGFycmFuZ2UoUGhvdG9fbmFtZSkNCg0KIyBMb29wIGZvciBlYWNoIG1lbnRlciAobGlzdGVkIG9uICJwaG90b19uYW1lIikNCmZvcihpIGluIGRhdCRQaG90b19uYW1lKSB7DQogIA0KICAjIFNob3cgZGF0YQ0KICBkYXQgJT4lDQogICAgZmlsdGVyKFBob3RvX25hbWUgPT0gaSkgJT4lDQogICAgYXMuZGF0YS5mcmFtZSgpICU+JQ0KICAgIG11dGF0ZShOYW1lXzIgPSBzdHJfYyguJE5hbWUsICIg44GV44KTIikpICU+JSANCiAgICBjb2x1bW5fdG9fcm93bmFtZXMoIk5hbWVfMiIpICU+JQ0KICAgIHNlbGVjdCgtUGhvdG9fbmFtZSwgLU5hbWUpICU+JSAgICANCiAgICB0ICU+JSAgICAgICAgICAgICAgICAgICAgICANCiAgICBhcy5kYXRhLmZyYW1lKCkgJT4lDQogICAgZHJvcF9uYSgpICU+JQ0KICAgIGthYmxlKCJodG1sIikgJT4lDQogICAga2FibGVfc3R5bGluZygic3RyaXBlZCIsIHBvc2l0aW9uID0gImxlZnQiLCBmb250X3NpemUgPSAxNikgJT4lDQogICAgY29sdW1uX3NwZWMoMSwgd2lkdGggPSAiOWVtIikgJT4lIA0KICAgIHByaW50KCkNCiAgDQogICMgU2hvdyBwaWN0dXJlDQogIGxvYWQuaW1hZ2UocGFzdGUwKCIuL3BpY3MvIiwgaSkpICU+JQ0KICAgICMgbG9hZC5pbWFnZShkYXQuMltpLCJQaG90by5VUkwiXSkgJT4lDQogICAgIyBpbXJlc2l6ZSguNykgJT4lICMgQ29tcHJlc3MgcGl4DQogICAgcGxvdChheGVzID0gRkFMU0UsIHhsYWIgPSAiIiwgeWxhYiA9ICIiKQ0KICANCn0NCg0KDQpgYGANCg0KDQo=</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIuODoeODs+OCv+ODvOe0ueS7iyINCi0tLQ0KDQoNCmBgYHtyLCBlY2hvID0gRkFMU0V9DQoNCnJtKGxpc3Q9bHMoKSkgICMgcmVzZXQgd29ya3NwYWNlDQoNCiMgaW5zdGFsbCAmIGxvYWQgcGFja2FnZXMNCnBhY21hbjo6cF9sb2FkKA0KICB0aWR5dmVyc2UNCiAgLCBrbml0ciAgDQogICwga2FibGVFeHRyYSAjIG5pY2UgdGFibGVzDQogICwgcGFuZGVyICAgICAjIG5pY2UgdGFibGVzDQogICwgaW1hZ2VyDQopDQoNCiMgUm1hcmtkb3duIHNldHRpbmdzDQprbml0cjo6b3B0c19jaHVuayRzZXQoDQogIHByb21wdCAgPSBGQUxTRSwgICMgRG8gbm90IGFkZCA+IG9yICsgaW4gaW5saW5lLWNvZGUNCiAgbWVzc2FnZSA9IEZBTFNFLCANCiAgY29tbWVudCA9ICIiLCANCiAgd2FybmluZyA9IEZBTFNFLCAgIyBNdXRlIHdhcm5pbmdzDQogIHRpZHkgICAgPSBUUlVFLA0KICBlY2hvID0gRkFMU0UNCiAgKSANCm9wdGlvbnMoa25pdHIua2FibGUuTkEgPSAnJykgIyBIaWRlIE5BcyBpbiBrYWJsZSB0YWJsZQ0KDQpgYGANCg0K44Ki44Or44OV44Kh44OZ44OD44OI6aCG44Gn44GZ44CC55Sz6L6844OV44Kp44O844Og44GL44KJ44GK55Sz44GX6L6844G/44GP44Gg44GV44GE44CC5b+c5Yuf44Gv44CB5a6a5ZOh44Gr6YGU44GX5qyh56ys57eg44KB44GN44Gj44Gm44GK44KK44G+44GZ44CCW+aWsOedgOaDheWgsV0oaHR0cHM6Ly91Z3VpLWd1aWd1aS53aXhzaXRlLmNvbS9tb2FpLWVzajIwMjEvJUU2JTk2JUIwJUU3JTlEJTgwJUU2JTgzJTg1JUU1JUEwJUIxKSDjgafoqbPntLDjgpLjgZTnorroqo3jgY/jgaDjgZXjgYTjgIIgPGJyPg0KDQrjgarjgYrjgIFGaXJlZm9444O7U2FmYXJp562J44Gu44OW44Op44Km44K244Gn44Gv44CB55Sz6L6844OV44Kp44O844Og44KS5paw44GX44GE44K/44OW44Gn6ZaL44GE44Gm44GP44Gg44GV44GE44CC5YmN44Gu44Oa44O844K444Gr5oi744KM44Gq44GP44Gq44KL5LiN5YW35ZCI44KS56K66KqN44GX44Gm44GK44KK44G+44GZ44CCIDxicj4NCg0KPGRpdiBzdHlsZT0ibWFyZ2luLWJvdHRvbTo3MHB4OyI+DQo8L2Rpdj4NCg0KYGBge3IsIHJlc3VsdHM9J2FzaXMnLCBlY2hvID0gRkFMU0V9DQoNCmRhdCA8LSByZWFkX2NzdignLi9NZW50ZXIuY3N2JykgJT4lDQogIGZpbHRlciguJCfnm7joq4fnm7jmiYvlvbnjgpLjgYrlvJXjgY3lj5fjgZHjgYTjgZ/jgaDjgZHjgb7jgZnjgYvvvJ8nID09ICLlj68iKSAlPiUgDQogIHJlbmFtZSgNCiAgICAiU2NoZWR1bGUiID0gIuS7peS4i+OBruWkp+S8mumWi+WCrOacn+mWk+OBruOBhuOBoeOAgeODouOCouOCpOWun+aWveOBjOWPr+iDveOBquaXpeeoi+OCkumBuOaKnuOBj+OBoOOBleOBhOOAguOBquOBiuaZgumWk+W4r+OBr+OBiuaYvOOBguOCi+OBhOOBr+WkleaWueS7pemZjeOBquOBqeWFrOW8j+ODl+ODreOCsOODqeODoOOBruiHqueUseaZgumWk+OBq+OBguOBn+OCi+acn+mWk+OCkuioreWumuOBj+OBoOOBleOBhOOAgiIsDQogICAgIk5hbWUiID0gIuOBiuWQjeWJjSIsDQogICAgIktleXMiID0gIueglOeptuWIhumHjuOBqOeglOeptuaJi+azleOChOWvvuixoeOBq+mWouOBmeOCi+OCreODvOODr+ODvOODieOCkuOBlOiomOWFpeOBj+OBoOOBleOBhOOAgiIsDQogICAgIkhQIiA9ICLjgZToh6rouqvjga5IUOOBjOOBguOCjOOBsFVSTOOCkuOBlOiomOWFpeOBj+OBoOOBleOBhOOAgiIsDQogICAgIk1lc3NhZ2UiID0gIuODoeODs+ODhuOCo+ODvOOBuOOBruODoeODg+OCu+ODvOOCuOOBjOOBguOCjOOBsOiHqueUseOBq+OBlOiomOWFpeOBj+OBoOOBleOBhOOAgiIsDQogICAgIueUs+i+vOODleOCqeODvOODoCIgPSAiRW50cnlfVVJMIg0KICApICU+JSANCiAgc2VsZWN0KE5hbWUsIEtleXMsIE1lc3NhZ2UsIEhQLCBQaG90b19uYW1lLCDnlLPovrzjg5Xjgqnjg7zjg6ApICU+JSANCiAgYXJyYW5nZShQaG90b19uYW1lKQ0KDQojIExvb3AgZm9yIGVhY2ggbWVudGVyIChsaXN0ZWQgb24gInBob3RvX25hbWUiKQ0KZm9yKGkgaW4gZGF0JFBob3RvX25hbWUpIHsNCiAgDQogICMgU2hvdyBkYXRhDQogIGRhdCAlPiUNCiAgICBmaWx0ZXIoUGhvdG9fbmFtZSA9PSBpKSAlPiUNCiAgICBhcy5kYXRhLmZyYW1lKCkgJT4lDQogICAgbXV0YXRlKE5hbWVfMiA9IHN0cl9jKC4kTmFtZSwgIiDjgZXjgpMiKSkgJT4lIA0KICAgIGNvbHVtbl90b19yb3duYW1lcygiTmFtZV8yIikgJT4lDQogICAgc2VsZWN0KC1QaG90b19uYW1lLCAtTmFtZSkgJT4lICAgIA0KICAgIHQgJT4lICAgICAgICAgICAgICAgICAgICAgIA0KICAgIGFzLmRhdGEuZnJhbWUoKSAlPiUNCiAgICBkcm9wX25hKCkgJT4lDQogICAga2FibGUoImh0bWwiKSAlPiUNCiAgICBrYWJsZV9zdHlsaW5nKCJzdHJpcGVkIiwgcG9zaXRpb24gPSAibGVmdCIsIGZvbnRfc2l6ZSA9IDE2KSAlPiUNCiAgICBjb2x1bW5fc3BlYygxLCB3aWR0aCA9ICI5ZW0iKSAlPiUgDQogICAgcHJpbnQoKQ0KICANCiAgIyBTaG93IHBpY3R1cmUNCiAgbG9hZC5pbWFnZShwYXN0ZTAoIi4vcGljcy8iLCBpKSkgJT4lDQogICAgIyBsb2FkLmltYWdlKGRhdC4yW2ksIlBob3RvLlVSTCJdKSAlPiUNCiAgICAjIGltcmVzaXplKC43KSAlPiUgIyBDb21wcmVzcyBwaXgNCiAgICBwbG90KGF4ZXMgPSBGQUxTRSwgeGxhYiA9ICIiLCB5bGFiID0gIiIpDQogIA0KfQ0KDQoNCmBgYA0KDQoNCg==</div>
 
 
 
@@ -1469,7 +1430,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>

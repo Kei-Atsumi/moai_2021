@@ -13,13 +13,22 @@
 
 <title>Schedule</title>
 
-<script src="site_libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.7/header-attrs.js"></script>
 <script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
@@ -38,11 +47,6 @@
     </style>
 
 <style type="text/css">code{white-space: pre;}</style>
-<style type="text/css">
-  pre:not([class]) {
-    background-color: white;
-  }
-</style>
 <script type="text/javascript">
 if (window.hljs) {
   hljs.configure({languages: []});
@@ -56,30 +60,6 @@ if (window.hljs) {
 
 
 <style type="text/css">
-h1 {
-  font-size: 34px;
-}
-h1.title {
-  font-size: 38px;
-}
-h2 {
-  font-size: 30px;
-}
-h3 {
-  font-size: 24px;
-}
-h4 {
-  font-size: 18px;
-}
-h5 {
-  font-size: 16px;
-}
-h6 {
-  font-size: 12px;
-}
-.table th:not([align]) {
-  text-align: left;
-}
 #rmd-source-code {
   display: none;
 }
@@ -94,10 +74,6 @@ h6 {
   max-width: 940px;
   margin-left: auto;
   margin-right: auto;
-}
-code {
-  color: inherit;
-  background-color: rgba(0, 0, 0, 0.04);
 }
 img {
   max-width:100%;
@@ -114,40 +90,13 @@ button.code-folding-btn:focus {
 summary {
   display: list-item;
 }
+pre code {
+  padding: 0;
+}
 </style>
 
 
 <style type="text/css">
-/* padding for bootstrap navbar */
-body {
-  padding-top: 60px;
-  padding-bottom: 40px;
-}
-/* offset scroll position for anchor links (for fixed navbar)  */
-.section h1 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h2 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h3 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h4 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h5 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
-.section h6 {
-  padding-top: 65px;
-  margin-top: -65px;
-}
 .dropdown-submenu {
   position: relative;
 }
@@ -175,7 +124,7 @@ body {
   margin-right: -10px;
 }
 .dropdown-submenu:hover>a:after {
-  border-left-color: #ffffff;
+  border-left-color: #adb5bd;
 }
 .dropdown-submenu.pull-left {
   float: none;
@@ -187,7 +136,7 @@ body {
 }
 </style>
 
-<script>
+<script type="text/javascript">
 // manage active state of menu based on current page
 $(document).ready(function () {
   // active menu anchor
@@ -198,10 +147,23 @@ $(document).ready(function () {
   var menuAnchor = $('a[href="' + href + '"]');
 
   // mark it active
-  menuAnchor.parent().addClass('active');
+  menuAnchor.tab('show');
 
   // if it's got a parent navbar menu mark it active as well
   menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
 });
 </script>
 
@@ -213,7 +175,6 @@ $(document).ready(function () {
   max-height: 500px;
   min-height: 44px;
   overflow-y: auto;
-  background: white;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -308,11 +269,11 @@ $(document).ready(function () {
   </div><!--/.container -->
 </div><!--/.navbar -->
 
-<div class="fluid-row" id="header">
+<div id="header">
 
-<div class="btn-group pull-right">
-<button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
-<ul class="dropdown-menu" style="min-width: 50px;">
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
 <li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
 <li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
 <li role="separator" class="divider"></li>
@@ -327,7 +288,7 @@ $(document).ready(function () {
 </div>
 
 
-<p>1月28日現在の、メンター（敬称略）ごとの開催日候補です。実際の開催日は、メンターの方々に調整していただきます。</p>
+<p>1月28日現在の、メンター（敬称略）ごとの開催日候補です。実際の開催日は、メンターの方々に調整していただきます。候補には変更の可能性がありますので、<a href="https://ugui-guigui.wixsite.com/moai-esj2021/%E6%96%B0%E7%9D%80%E6%83%85%E5%A0%B1">新着情報</a> をご確認ください。</p>
 <div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:500px; overflow-x: scroll; width:100%; ">
 <table class="table" style="width: auto !important; ">
 <thead>
@@ -1537,7 +1498,7 @@ $(document).ready(function () {
 </table>
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNjaGVkdWxlIg0KLS0tDQoNCjHmnIgyOOaXpeePvuWcqOOBruOAgeODoeODs+OCv+ODvO+8iOaVrOensOeVpe+8ieOBlOOBqOOBrumWi+WCrOaXpeWAmeijnOOBp+OBmeOAguWun+mam+OBrumWi+WCrOaXpeOBr+OAgeODoeODs+OCv+ODvOOBruaWueOAheOBq+iqv+aVtOOBl+OBpuOBhOOBn+OBoOOBjeOBvuOBmeOAgg0KDQpgYGB7ciwgZWNobyA9IEZBTFNFfQ0KDQpybShsaXN0PWxzKCkpICAjIHJlc2V0IHdvcmtzcGFjZQ0KDQojIGluc3RhbGwgJiBsb2FkIHBhY2thZ2VzDQpwYWNtYW46OnBfbG9hZCgNCiAgdGlkeXZlcnNlDQogICwga25pdHIgIA0KICAsIGthYmxlRXh0cmEgIyBuaWNlIHRhYmxlcw0KICAsIHBhbmRlciAgICAgIyBuaWNlIHRhYmxlcw0KKQ0KDQojIFJtYXJrZG93biBzZXR0aW5ncw0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KA0KICBwcm9tcHQgID0gRkFMU0UsICAjIERvIG5vdCBhZGQgPiBvciArIGluIGlubGluZS1jb2RlDQogIG1lc3NhZ2UgPSBGQUxTRSwgDQogIGNvbW1lbnQgPSAiIiwgDQogIHdhcm5pbmcgPSBGQUxTRSwgICMgTXV0ZSB3YXJuaW5ncw0KICB0aWR5ICAgID0gVFJVRSwNCiAgZWNobyA9IEZBTFNFDQogICkgDQpvcHRpb25zKGtuaXRyLmthYmxlLk5BID0gJycpICMgSGlkZSBOQXMgaW4ga2FibGUgdGFibGUNCg0KYGBgDQoNCmBgYHtyLCByZXN1bHRzPSdhc2lzJywgZWNobyA9IEZBTFNFfQ0KDQpyZWFkX2NzdignLi9TY2hlZHVsZS5jc3YnKSAlPiUNCiAgIyMgU2V0IHNlbGwgdGV4dCBzdHlsZSBmb3IgYWxsIGRhdGVzIGFuZCBtZW50ZXJzDQogICMgVG8gZG8gc28gYXQgb25jZSwgZ2F0aGVyIGNlbGwgZm9yIGEgY29sdW1uDQogIHBpdm90X2xvbmdlcihjb2xzID0gLTEsIG5hbWVzX3RvID0gIk1lbnRlcnMiLCB2YWx1ZXNfdG8gPSAiUG9zc2liaWxpdHkiKSAlPiUgDQogICMgU2V0IGNlbGwgc3R5bGUNCiAgbXV0YXRlKA0KICAgIFBvc3NpYmlsaXR5ID0gdGV4dF9zcGVjKA0KICAgICAgUG9zc2liaWxpdHksDQogICAgICBib2xkID0gVFJVRSwNCiAgICAgIGZvbnRfc2l6ZSA9IDI0LA0KICAgICAgIyBVc2UgY29sb3ItYmxpbmQgZnJpZW5kbHkgY29sb3Igc2V0cw0KICAgICAgY29sb3IgPSBpZmVsc2UoDQogICAgICAgICMgUmVkIGZvciBhdmFpbGFibGUNCiAgICAgICAgUG9zc2liaWxpdHkgPT0gIuKXiyIsIHJnYigxLDAuMTU3LDApLA0KICAgICAgICBpZmVsc2UoDQogICAgICAgICAgIyBMaWdodC1ibHVlIGZvciB1bmF2YWlsYWJsZQ0KICAgICAgICAgIFBvc3NpYmlsaXR5ID09ICLilrMiLCByZ2IoMSwgMC45NjA4LCAwKSwgcmdiKDAuNCwgMC44LCAxKQ0KICAgICAgICAgICkpKSkgJT4lDQogICMgU2V0IGVhY2ggbWVudGVyIHRvIGNvbHVtbg0KICBwaXZvdF93aWRlcihuYW1lc19mcm9tID0gTWVudGVycywgdmFsdWVzX2Zyb20gPSBQb3NzaWJpbGl0eSkgJT4lIA0KICAjIERvbid0IHNob3cgY2VsbCBzdHlsZXMgYXMgdGV4dHMNCiAga2FibGUoZXNjYXBlID0gRkFMU0UpICU+JQ0KICBrYWJsZV9zdHlsaW5nKHBvc2l0aW9uID0gImxlZnQiLCBmdWxsX3dpZHRoID0gRkFMU0UpICU+JQ0KICAjIENvbHVtbiBzdHlsZQ0KICBjb2x1bW5fc3BlYygxLCBjb2xvciA9ICJibGFjayIsIGJhY2tncm91bmQgPSAibGlnaHRncmV5Iiwgd2lkdGggPSAiMjBlbSIpICU+JQ0KICAjIFJvdyBzdHlsZQ0KICByb3dfc3BlYygwLCBib2xkID0gRkFMU0UsIGNvbG9yID0gImJsYWNrIiwgYmFja2dyb3VuZCA9ICJsaWdodGdyZXkiKSAlPiUgDQogICMgU2Nyb2xsYWJsZSB0YWJsZQ0KICBzY3JvbGxfYm94KHdpZHRoID0gIjEwMCUiLCBoZWlnaHQgPSAiNTAwcHgiLCBmaXhlZF90aGVhZCA9IFRSVUUpDQogIA0KYGBgDQoNCg==</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlNjaGVkdWxlIg0KLS0tDQoNCjHmnIgyOOaXpeePvuWcqOOBruOAgeODoeODs+OCv+ODvO+8iOaVrOensOeVpe+8ieOBlOOBqOOBrumWi+WCrOaXpeWAmeijnOOBp+OBmeOAguWun+mam+OBrumWi+WCrOaXpeOBr+OAgeODoeODs+OCv+ODvOOBruaWueOAheOBq+iqv+aVtOOBl+OBpuOBhOOBn+OBoOOBjeOBvuOBmeOAguWAmeijnOOBq+OBr+WkieabtOOBruWPr+iDveaAp+OBjOOBguOCiuOBvuOBmeOBruOBp+OAgVvmlrDnnYDmg4XloLFdKGh0dHBzOi8vdWd1aS1ndWlndWkud2l4c2l0ZS5jb20vbW9haS1lc2oyMDIxLyVFNiU5NiVCMCVFNyU5RCU4MCVFNiU4MyU4NSVFNSVBMCVCMSkg44KS44GU56K66KqN44GP44Gg44GV44GE44CCDQoNCmBgYHtyLCBlY2hvID0gRkFMU0V9DQoNCnJtKGxpc3Q9bHMoKSkgICMgcmVzZXQgd29ya3NwYWNlDQoNCiMgaW5zdGFsbCAmIGxvYWQgcGFja2FnZXMNCnBhY21hbjo6cF9sb2FkKA0KICB0aWR5dmVyc2UNCiAgLCBrbml0ciAgDQogICwga2FibGVFeHRyYSAjIG5pY2UgdGFibGVzDQogICwgcGFuZGVyICAgICAjIG5pY2UgdGFibGVzDQopDQoNCiMgUm1hcmtkb3duIHNldHRpbmdzDQprbml0cjo6b3B0c19jaHVuayRzZXQoDQogIHByb21wdCAgPSBGQUxTRSwgICMgRG8gbm90IGFkZCA+IG9yICsgaW4gaW5saW5lLWNvZGUNCiAgbWVzc2FnZSA9IEZBTFNFLCANCiAgY29tbWVudCA9ICIiLCANCiAgd2FybmluZyA9IEZBTFNFLCAgIyBNdXRlIHdhcm5pbmdzDQogIHRpZHkgICAgPSBUUlVFLA0KICBlY2hvID0gRkFMU0UNCiAgKSANCm9wdGlvbnMoa25pdHIua2FibGUuTkEgPSAnJykgIyBIaWRlIE5BcyBpbiBrYWJsZSB0YWJsZQ0KDQpgYGANCg0KYGBge3IsIHJlc3VsdHM9J2FzaXMnLCBlY2hvID0gRkFMU0V9DQoNCnJlYWRfY3N2KCcuL1NjaGVkdWxlLmNzdicpICU+JQ0KICAjIyBTZXQgc2VsbCB0ZXh0IHN0eWxlIGZvciBhbGwgZGF0ZXMgYW5kIG1lbnRlcnMNCiAgIyBUbyBkbyBzbyBhdCBvbmNlLCBnYXRoZXIgY2VsbCBmb3IgYSBjb2x1bW4NCiAgcGl2b3RfbG9uZ2VyKGNvbHMgPSAtMSwgbmFtZXNfdG8gPSAiTWVudGVycyIsIHZhbHVlc190byA9ICJQb3NzaWJpbGl0eSIpICU+JSANCiAgIyBTZXQgY2VsbCBzdHlsZQ0KICBtdXRhdGUoDQogICAgUG9zc2liaWxpdHkgPSB0ZXh0X3NwZWMoDQogICAgICBQb3NzaWJpbGl0eSwNCiAgICAgIGJvbGQgPSBUUlVFLA0KICAgICAgZm9udF9zaXplID0gMjQsDQogICAgICAjIFVzZSBjb2xvci1ibGluZCBmcmllbmRseSBjb2xvciBzZXRzDQogICAgICBjb2xvciA9IGlmZWxzZSgNCiAgICAgICAgIyBSZWQgZm9yIGF2YWlsYWJsZQ0KICAgICAgICBQb3NzaWJpbGl0eSA9PSAi4peLIiwgcmdiKDEsMC4xNTcsMCksDQogICAgICAgIGlmZWxzZSgNCiAgICAgICAgICAjIExpZ2h0LWJsdWUgZm9yIHVuYXZhaWxhYmxlDQogICAgICAgICAgUG9zc2liaWxpdHkgPT0gIuKWsyIsIHJnYigxLCAwLjk2MDgsIDApLCByZ2IoMC40LCAwLjgsIDEpDQogICAgICAgICAgKSkpKSAlPiUNCiAgIyBTZXQgZWFjaCBtZW50ZXIgdG8gY29sdW1uDQogIHBpdm90X3dpZGVyKG5hbWVzX2Zyb20gPSBNZW50ZXJzLCB2YWx1ZXNfZnJvbSA9IFBvc3NpYmlsaXR5KSAlPiUgDQogICMgRG9uJ3Qgc2hvdyBjZWxsIHN0eWxlcyBhcyB0ZXh0cw0KICBrYWJsZShlc2NhcGUgPSBGQUxTRSkgJT4lDQogIGthYmxlX3N0eWxpbmcocG9zaXRpb24gPSAibGVmdCIsIGZ1bGxfd2lkdGggPSBGQUxTRSkgJT4lDQogICMgQ29sdW1uIHN0eWxlDQogIGNvbHVtbl9zcGVjKDEsIGNvbG9yID0gImJsYWNrIiwgYmFja2dyb3VuZCA9ICJsaWdodGdyZXkiLCB3aWR0aCA9ICIyMGVtIikgJT4lDQogICMgUm93IHN0eWxlDQogIHJvd19zcGVjKDAsIGJvbGQgPSBGQUxTRSwgY29sb3IgPSAiYmxhY2siLCBiYWNrZ3JvdW5kID0gImxpZ2h0Z3JleSIpICU+JSANCiAgIyBTY3JvbGxhYmxlIHRhYmxlDQogIHNjcm9sbF9ib3god2lkdGggPSAiMTAwJSIsIGhlaWdodCA9ICI1MDBweCIsIGZpeGVkX3RoZWFkID0gVFJVRSkNCiAgDQpgYGANCg0K</div>
 
 
 
@@ -1565,7 +1526,7 @@ $(document).ready(function () {
 
 $(document).ready(function () {
   $('.tabset-dropdown > .nav-tabs > li').click(function () {
-    $(this).parent().toggleClass('nav-tabs-open')
+    $(this).parent().toggleClass('nav-tabs-open');
   });
 });
 </script>
