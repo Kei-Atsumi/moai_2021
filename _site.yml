@@ -5,6 +5,8 @@ navbar:
       href: https://ugui-guigui.wixsite.com/moai-esj2021
     - text: "メンター紹介"
       href: index.html
+    - text: "参加者の評価"
+      href: Questionnaire_res.pdf
   right:
     - text: "メンターごとの開催日時候補"
       href: schedule.html
